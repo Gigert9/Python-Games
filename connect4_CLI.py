@@ -85,7 +85,7 @@ while not game_over:
             sys.exit()
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            continue
+            print(event.pos)
 '''
             # Ask for Player 1 Input
             if turn == 0:
