@@ -2,6 +2,9 @@ import numpy as np
 import pygame
 import sys
 
+BLUE = (0,0,255)
+BLACK = (0,0,0)
+
 ROW_COUNT = 6
 COLUMN_COUNT = 7
 
@@ -49,7 +52,10 @@ def winning_move(board, piece):
                 return True
             
 def draw_baord(board):
-    pass
+    for c in range(COLUMN_COUNT):
+        for r in range (ROW_COUNT):
+            pygame.draw.rect(screen, BLUE, (c*SQUARE_SIZE, r*SQUARE_SIZE+SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+            pygame.draw.circle(screen, BLACK, (c*SQUARE_SIZE+SQUARE_SIZE/2, r*SQUARE_SIZE+SQUARE_SIZE+SQUARE_SIZE/2), RADIUS)
 
 
 board = create_board()
@@ -66,7 +72,11 @@ height = (ROW_COUNT+1) * SQUARE_SIZE
 
 size = (width, height)
 
+RADIUS = int(SQUARE_SIZE/2 - 5)
+
 screen = pygame.display.set_mode(size)
+draw_baord(board)
+pygame.display.update()
 
 while not game_over:
 
