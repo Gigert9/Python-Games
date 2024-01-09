@@ -232,6 +232,8 @@ def clear_rows(grid, locked):
             if y < ind:
                 newKey = (x, y + inc)
                 locked[newKey] = locked.pop(key)
+
+    return inc
  
  
 def draw_next_shape(shape, surface):
@@ -250,14 +252,48 @@ def draw_next_shape(shape, surface):
  
     surface.blit(label, (sx + 10, sy- 30))
  
- 
-def draw_window(surface):
+def update_score(nscore):
+    score = max_score()
+    
+    with open('tetris_scores.txt', 'w') as f:
+        if int(score) > nscore:
+            f.write(str(score))
+        else:
+            f.write(str(nscore))
+
+def max_score():
+    with open('tetris_scores.txt', 'r') as f:
+        lines = f.readlines()
+        score = lines[0].strip()
+    
+    return score
+
+
+def draw_window(surface, score=0, last_score=0):
     surface.fill((0,0,0))
     # Tetris Title
     font = pygame.font.SysFont('comicsans', 60)
     label = font.render('TETRIS', 1, (255,255,255))
  
     surface.blit(label, (top_left_x + play_width / 2 - (label.get_width() / 2), 30))
+
+    # Current Score
+    font = pygame.font.SysFont('comicsans', 30)
+    label = font.render('Score: ' + str(score), 1, (255,255,255))
+ 
+    sx = top_left_x + play_width + 50
+    sy = top_left_y + play_height/2 - 100
+
+    surface.blit(label, (sx + 20, sy + 160))
+
+    #High Score
+    font = pygame.font.SysFont('comcicsans', 30)
+    label = font.render('High Score: ' + last_score, 1, (255,255,255))
+
+    sx = top_left_x - 200
+    sy = top_left_y + 200
+
+    surface.blit(label, (sx + 20, sy + 160))
  
     for i in range(len(grid)):
         for j in range(len(grid[i])):
@@ -272,6 +308,8 @@ def draw_window(surface):
 def main():
     global grid
  
+    last_score = max_score()
+
     locked_positions = {}  # (x,y):(255,0,0)
     grid = create_grid(locked_positions)
  
@@ -281,6 +319,8 @@ def main():
     next_piece = get_shape()
     clock = pygame.time.Clock()
     fall_time = 0
+    level_time = 0
+    score = 0
  
     while run:
         fall_speed = 0.27
@@ -288,6 +328,11 @@ def main():
         grid = create_grid(locked_positions)
         fall_time += clock.get_rawtime()
         clock.tick()
+
+        if level_time/1000 > 5:
+            level_time = 0
+            if level_time > 0.12:
+                level_time -= 0.005
  
         # PIECE FALLING CODE
         if fall_time/1000 >= fall_speed:
@@ -349,19 +394,19 @@ def main():
             change_piece = False
  
             # call four times to check for multiple clear rows
-            clear_rows(grid, locked_positions)
+            score += clear_rows(grid, locked_positions) * 10
  
-        draw_window(win)
+        draw_window(win, score, last_score)
         draw_next_shape(next_piece, win)
         pygame.display.update()
  
         # Check if user lost
         if check_lost(locked_positions):
+            draw_text_middle("You Lost", 40, (255,255,255), win)
+            pygame.display.update()
+            pygame.time.delay(2000)
             run = False
- 
-    draw_text_middle("You Lost", 40, (255,255,255), win)
-    pygame.display.update()
-    pygame.time.delay(2000)
+            update_score(score)
  
  
 def main_menu():
