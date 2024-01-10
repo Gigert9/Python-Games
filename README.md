@@ -14,4 +14,4 @@ For Tetris to function properly, you will need to ensure the 'tetris_scores.txt'
 
 ### Online_Game_v1
 
-A current work in progress, this is not quite a 'game' so much as an experiment in creating online connectivity through Python via sockets. The code works, but will require some configuration to run locally. If interested, please reference the code and insert the appropriate IP address before executing.
+This is not quite a 'game' so much as an experiment in creating online connectivity through Python via sockets. The code works, but will require some configuration to run locally. If interested, please reference the comments within the ***server.py*** and ***network.py*** files and insert your appropriate local IPv4 address before executing. This folder should be cloned in its entirety to ensure full functionality. To run, simply start an instance of ***server.py***, followed by two instances of ***client.py***.
