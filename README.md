@@ -10,7 +10,7 @@ It's suggested to clone the entire github repo for playing locally, however it i
 
 ### Tetris
 
-For Tetris to funciton properly, you will need to ensure the 'tetris_scores.txt' file has also been downloaded to the same local folder. Alternatively, a text file with the same name will need to be created and a single integer value placed in the first line. If you'd like to change the name of the file, please review the code itself, however it should be noted that without fulfilling this requirement Tetris will not work correctly.
+For Tetris to function properly, you will need to ensure the 'tetris_scores.txt' file has also been downloaded to the same local folder. Alternatively, a text file with the same name will need to be created and a single integer value placed in the first line. If you'd like to change the name of the file, please review the code itself, however it should be noted that without fulfilling this requirement Tetris will not work correctly.
 
 ### Online_Game_v1
 
