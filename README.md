@@ -20,6 +20,6 @@ This is not quite a 'game' so much as an experiment in creating online connectiv
 
 This game may or may not work. In any case, it will require some tweaking of proper IP addresses in both the ***server.py*** and ***network.py*** files, just as with the experiment for *Online_Game_v1*. A far more complex experiment, this should work with multiple connections for multiple games, but I have yet to achieve functionality as expected.
 
-### What Did We Learn?
+## What Did We Learn?
 
 To put it simply, coding a game via pygame is way more difficult than working with the Unity Engine and C# programming language. While these projects were a fun dive into the world of Python, I find the language to be more applicable in for more analytical use-cases. If I ever were to return to the world of game development, I am certain it would be within either C# or C++ in Unity or Unreal. Firstly, those games produce far more satisfying graphical results, and required less confusing code (albiet not as effecient code). Either way, these were enjoyable learning experiences, and I'd recommend following the reference video above if you find yourself curious about the potential ability of python for video game development. Project closed.
